@@ -16,9 +16,9 @@ public class Display extends View {
         super(ctx);
         System.out.println("Display");
         publisherBox = new PublisherBox();
-        publisherBox.Register(new Particle("Name 1" , 100,200));
-        publisherBox.Register(new Particle("Name 2" , 150,250));
-        publisherBox.Register(new Particle("Name 2" , 200,300));
+        publisherBox.Register(new Particle("Name 1" , 500,700));
+        publisherBox.Register(new Particle("Name 2" , 550,750));
+        publisherBox.Register(new Particle("Name 3" , 600,800));
         publisherBox.Notify("NotifiedDisplay");
     }
 
@@ -27,7 +27,7 @@ public class Display extends View {
 
         super.onDraw(canvas);
         invalidate();
-        if(count > 5) {
+        if(count > 50) {
             publisherBox.Clone("Cloning");
             count = 0;
         }
@@ -35,6 +35,5 @@ public class Display extends View {
 
         publisherBox.Notify("NotifiedDisplay");
         publisherBox.Snapshot("NotifiedDisplay" , canvas);
-        System.out.println("Display Update");
     }
 }

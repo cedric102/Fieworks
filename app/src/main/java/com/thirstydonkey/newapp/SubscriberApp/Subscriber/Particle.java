@@ -9,30 +9,19 @@ public class Particle implements IElement2 {
 
     /////////
 
-    private int x=10;
-    private int y=10;
-    private int dirX = 10;
-    private int dirY = 10;
-
     private Coord coord;
 
     public Particle(String Name, int x, int y) {
         coord = new Coord();
         this.Name = Name;
-        this.x = x;
-        this.y = y;
-        coord.x = x;
-        coord.y = y;
+        this.coord.x = x;
+        this.coord.y = y;
     }
     public Particle(Particle prot) {
         if (prot != null) {
             coord = new Coord();
-            this.dirX = prot.dirX;
-            this.dirY = prot.dirY;
-            this.x = prot.x;
-            this.y = prot.y;
-            this.coord.x = prot.x;
-            this.coord.y = prot.y;
+            this.coord.x = prot.coord.x;
+            this.coord.y = prot.coord.y;
             this.Name = prot.Name;
             this.Text = prot.Text;
         }
@@ -43,7 +32,6 @@ public class Particle implements IElement2 {
     @Override
     public void Notified(String str) {
         this.Text = this.Name + " ; " + str;
-    //    System.out.println(this.Text + " => " + this.x + " ; " + this.y);
     }
     @Override
     public String Snapshot() {
@@ -51,10 +39,10 @@ public class Particle implements IElement2 {
     }
     @Override
     public void Update() {
-        this.x += this.dirX;
-        this.y += this.dirY;
-        this.coord.x += this.dirX;
-        this.coord.y += this.dirY;
+        this.coord.x += this.coord.dirX;
+        this.coord.y += this.coord.dirY;
+        this.coord.x += this.coord.dirX;
+        this.coord.y += this.coord.dirY;
     }
 
     //////////////////
@@ -65,10 +53,10 @@ public class Particle implements IElement2 {
         return coord;
     }
     @Override
-    public void SetCoord(Coord coord){
-        this.coord = new Coord(coord);
-        x = coord.x;
-        y = coord.y;
+    public void SetCoord(Coord coord_){
+        this.coord = new Coord(coord_);
+        coord.x = coord_.x;
+        coord.y = coord_.y;
     }
 
     @Override
@@ -78,7 +66,7 @@ public class Particle implements IElement2 {
 
     @Override
     public IElement2 Clone(String str) {
-        return new Particle(str , x , y);
+        return new Particle(str , coord.x , coord.y);
     }
 
     @Override

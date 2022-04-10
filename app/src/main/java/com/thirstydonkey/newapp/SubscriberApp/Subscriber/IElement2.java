@@ -6,10 +6,14 @@ public interface IElement2 {
     class Coord {
         public int x;
         public int y;
+        int dirX = 0;
+        int dirY = 0;
         Coord() {}
         Coord(Coord coord) {
             x = coord.x;
             y = coord.y;
+            dirX = coord.dirX;
+            dirY = coord.dirY;
         }
     }
 

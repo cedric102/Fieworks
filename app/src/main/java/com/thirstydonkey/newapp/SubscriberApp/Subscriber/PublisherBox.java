@@ -12,13 +12,15 @@ public class PublisherBox {
     private ArrayList<IElement2> subscriberList;
     public  int color;
     Paint paint;
-    ArrayList<IElement2> subscriberListTemp;
+    ArrayList<IElement2> subscriberAddList;
+    ArrayList<IElement2> subscriberRemoveList;
     public PublisherBox() {
         paint = new Paint();
         color = Color.BLUE;
         paint.setColor(color);
         subscriberList = new ArrayList<>();
-        subscriberListTemp = new ArrayList<>();
+        subscriberAddList = new ArrayList<>();
+        subscriberRemoveList = new ArrayList<>();
     }
     public void Add() {
         subscriberList.add(new Subscrib("Box"));
@@ -37,26 +39,24 @@ public class PublisherBox {
     }
     public void Clone(String str) {
 
-        subscriberListTemp.clear();
+        subscriberAddList.clear();
+        subscriberRemoveList.clear();
         int i=0;
         for(IElement2 elem : subscriberList) {
-            System.out.println("Cloning : " + i);
-i++;
-            subscriberListTemp.add(elem.Clone("Name " + (subscriberListTemp.size() + subscriberList.size())));
+            i++;
 
-            IElement2 el = subscriberListTemp.get(subscriberListTemp.size() - 1);
-            el.GetCoord().x -= 100;
-            el.SetCoord(el.GetCoord());
-         //   System.out.println("Cloned");
-         //   IElement2.Coord coord = el.GetCoord();
-         //   System.out.println("Get Coord");
-         //   coord.x -= 100;
-         //   System.out.println("Adjust Coord");
-         //   el.SetCoord(coord);
-         //   System.out.println("Set Coord");
+            for(int j=0 ; j<360 ; j+=60) {
+                subscriberAddList.add(elem.Clone("Name " + (subscriberAddList.size() + subscriberList.size())));
+
+                IElement2 el = subscriberAddList.get(subscriberAddList.size() - 1);
+                el.GetCoord().dirX += 5 * Math.cos(i);
+                el.GetCoord().dirY += 5 * Math.sin(i);
+                el.SetCoord(el.GetCoord());
+            }
+            subscriberRemoveList.add(elem);
         }
-        for(IElement2 elem : subscriberListTemp)
-            subscriberList.add(elem);
+        subscriberList.addAll(subscriberAddList);
+        subscriberList.removeAll(subscriberRemoveList);
     }
     public void Snapshot(String str , Canvas canvas) {
         for(IElement2 elem : subscriberList) {
