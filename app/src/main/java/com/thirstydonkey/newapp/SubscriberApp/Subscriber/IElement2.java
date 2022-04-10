@@ -4,16 +4,31 @@ import com.thirstydonkey.newapp.Prototype.Prototype;
 
 public interface IElement2 {
     class Coord {
-        int x;
+        class Position {
+            int x;
+            int y;
+        }
+        class Speed {
+            int x;
+            int y;
+        }
+        Position position;
+        Speed speed;
+/*        int x;
         int y;
         int dirX = 0;
-        int dirY = 0;
-        Coord() {}
+        int dirY = 0;*/
+        Coord() {
+            position = new Position();
+            speed = new Speed();
+        }
         Coord(Coord coord) {
-            x = coord.x;
-            y = coord.y;
-            dirX = coord.dirX;
-            dirY = coord.dirY;
+            position = new Position();
+            speed = new Speed();
+            position.x = coord.position.x;
+            position.y = coord.position.y;
+            speed.x = coord.speed.x;
+            speed.y = coord.speed.y;
         }
     }
 

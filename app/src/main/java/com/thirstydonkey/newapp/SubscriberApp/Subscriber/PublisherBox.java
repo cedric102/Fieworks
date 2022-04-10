@@ -44,8 +44,8 @@ public class PublisherBox {
                 subscriberAddList.add(elem.Clone("Name " + (subscriberAddList.size() + subscriberList.size())));
 
                 IElement2 el = subscriberAddList.get(subscriberAddList.size() - 1);
-                el.GetCoord().dirX += 5 * Math.cos(i);
-                el.GetCoord().dirY += 5 * Math.sin(i);
+                el.GetCoord().speed.x += 10 * Math.cos(i);
+                el.GetCoord().speed.y += 10 * Math.sin(i);
                 el.SetCoord(el.GetCoord());
             }
             subscriberRemoveList.add(elem);
@@ -54,8 +54,20 @@ public class PublisherBox {
         subscriberList.removeAll(subscriberRemoveList);
     }
     public void Snapshot(String str , Canvas canvas) {
+
+        subscriberRemoveList.clear();
         for(IElement2 elem : subscriberList) {
-            canvas.drawCircle( elem.GetCoord().x ,elem.GetCoord().y ,20 , paint);
+            if( elem.GetCoord().position.x < 0 ||
+                    elem.GetCoord().position.y < 0 ||
+                    elem.GetCoord().position.x > 1100 ||
+                    elem.GetCoord().position.y > 1750
+            )
+                subscriberRemoveList.add(elem);
+        }
+        subscriberList.removeAll(subscriberRemoveList);
+
+        for(IElement2 elem : subscriberList) {
+            canvas.drawCircle( elem.GetCoord().position.x ,elem.GetCoord().position.y ,20 , paint);
         }
     }
 

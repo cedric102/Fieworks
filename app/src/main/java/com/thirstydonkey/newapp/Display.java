@@ -27,7 +27,7 @@ public class Display extends View {
 
         super.onDraw(canvas);
         invalidate();
-        if(count > 50) {
+        if(count > 70) {
             publisherBox.Clone("Cloning");
             count = 0;
         }
