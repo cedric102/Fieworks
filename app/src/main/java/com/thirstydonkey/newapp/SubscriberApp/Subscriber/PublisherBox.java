@@ -4,8 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-//import com.thirstydonkey.newapp.Prototype.Prototype;
-
 import java.util.ArrayList;
 
 public class PublisherBox {
@@ -21,9 +19,6 @@ public class PublisherBox {
         subscriberList = new ArrayList<>();
         subscriberAddList = new ArrayList<>();
         subscriberRemoveList = new ArrayList<>();
-    }
-    public void Add() {
-        subscriberList.add(new Subscrib("Box"));
     }
     public void Register(IElement2 Elem) {
         subscriberList.add(Elem);

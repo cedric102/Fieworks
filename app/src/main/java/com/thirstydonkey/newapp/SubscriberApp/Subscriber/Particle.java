@@ -1,7 +1,5 @@
 package com.thirstydonkey.newapp.SubscriberApp.Subscriber;
 
-// import com.thirstydonkey.newapp.Prototype.Prototype;
-
 public class Particle implements IElement2 {
 
     private String Name;
@@ -29,6 +27,7 @@ public class Particle implements IElement2 {
     public Particle(String Name) {
         this.Name = Name;
     }
+
     @Override
     public void Notified(String str) {
         this.Text = this.Name + " ; " + str;
@@ -67,11 +66,6 @@ public class Particle implements IElement2 {
     @Override
     public IElement2 Clone(String str) {
         return new Particle(str , coord.x , coord.y);
-    }
-
-    @Override
-    public IElement2 CloneCoord() {
-        return new Particle(this);
     }
 
 }
